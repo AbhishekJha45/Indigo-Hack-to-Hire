@@ -1,0 +1,69 @@
+<div mat-dialog-title>
+  <h1>Flight Form</h1>
+</div>
+<form [formGroup]="flightForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Flight Number</mat-label>
+        <input matInput type="text" placeholder="Ex. BOEING001" formControlName="flightNumber" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Terminal Gate</mat-label>
+        <input matInput placeholder="Ex. A6" formControlName="terminalGate" required />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-radio-group aria-label="Select an option" formControlName="flightType" required>
+        <mat-label><b>Flight Type</b></mat-label>
+        <mat-radio-button value="INBOUND">Inbound</mat-radio-button>
+        <mat-radio-button value="OUTBOUND">Outbound</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Origin Location</mat-label>
+        <input matInput placeholder="Ex. Vancourer" formControlName="originLocation" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Destination Location</mat-label>
+        <input matInput placeholder="Ex. Toronto" formControlName="destinationLocation" required />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Arrival Time</mat-label>
+        <input matInput type="datetime-local" placeholder="date & time" formControlName="arrivalTime" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Departure Time</mat-label>
+        <input matInput type="datetime-local" placeholder="date & time" formControlName="departureTime" required />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Set Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="SCHEDULED">Scheduled</mat-option>
+          <mat-option value="ARRIVAL">Arrival</mat-option>
+          <mat-option value="DEPARTURE">Departure</mat-option>
+          <mat-option value="DELAY">Delay</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!flightForm.valid">
+      Save
+    </button>
+  </div>
+</form>
